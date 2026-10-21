@@ -1,0 +1,8 @@
+ready
+ready up and running
+status 3 jobs, queue 0
+watchdog
+stopping
+reloading
+notify READY=1\nSTATUS=raw\nMAINPID=1
+usec
