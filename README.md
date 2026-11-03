@@ -1,6 +1,9 @@
 # mojo-systemd
 
-[![CI](https://github.com/amarbaro/mojo-systemd/actions/workflows/ci.yml/badge.svg)](https://github.com/amarbaro/mojo-systemd/actions/workflows/ci.yml)
+<!-- badges -->
+[![ci](https://github.com/amarbaro/mojo-systemd/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/amarbaro/mojo-systemd/actions/workflows/ci.yml) [![latest release](https://img.shields.io/github/v/release/amarbaro/mojo-systemd)](https://github.com/amarbaro/mojo-systemd/releases/latest) [![license](https://img.shields.io/github/license/amarbaro/mojo-systemd)](https://github.com/amarbaro/mojo-systemd/blob/main/LICENSE)
+<!-- /badges -->
+
 
 Tell systemd from Mojo that a service is ready, what it is doing, and that it is still alive
 (the sd_notify protocol). 60 lines, libc only, no libsystemd. The datagrams are checked byte for
