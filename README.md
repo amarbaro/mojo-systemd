@@ -6,7 +6,7 @@
 
 
 Tell systemd from Mojo that a service is ready, what it is doing, and that it is still alive
-(the sd_notify protocol). 60 lines, libc only, no libsystemd. The datagrams are checked byte for
+(the sd_notify protocol). Libc only, no libsystemd. The datagrams are checked byte for
 byte against a Python sender, and a real `Type=notify` unit with `WatchdogSec` proves the
 watchdog stays quiet while pings flow and kills the service when they stop.
 
