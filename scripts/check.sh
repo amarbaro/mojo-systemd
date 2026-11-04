@@ -45,4 +45,5 @@ dead=$(unit mojo-systemd-silent-$$ 2 4)
 [[ $dead == *watchdog* ]] || { echo "FAIL systemd: silent unit not killed by the watchdog: $dead"; exit 1; }
 echo "systemd: silent unit killed by the watchdog ($dead)"
 $M run -I src tests/api.mojo || { echo "FAIL api: tests/api.mojo"; exit 1; }
+$M run -I src examples/quickstart.mojo > /dev/null || { echo "FAIL example: examples/quickstart.mojo"; exit 1; }
 echo "PASS all"
