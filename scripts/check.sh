@@ -25,8 +25,11 @@ for i in "${!setups[@]}"; do
   echo "oracle: setup $i ($addr ${env:-no env}) identical, $(grep -c dgram .work/$i.impl) datagrams"
 done
 grep -q "usec 500000" .work/4.impl && grep -q "usec 0" .work/5.impl || { echo "FAIL oracle: watchdog_usec values"; exit 1; }
+$M run -I src tests/api.mojo || { echo "FAIL api: tests/api.mojo"; exit 1; }
 if ! systemctl --user is-system-running >/dev/null 2>&1 && [[ $(systemctl --user is-system-running 2>/dev/null) != degraded ]]; then
-  echo "SKIP systemd: no user service manager here"; echo "PASS oracle (systemd unit test skipped)"; exit 0
+  # a skip is not a pass: the oracle and api parts ran, the unit part did not
+  $M run -I src examples/quickstart.mojo > /dev/null || { echo "FAIL example: examples/quickstart.mojo"; exit 1; }
+  echo "SKIP systemd: no user service manager here, the Type=notify unit test did not run"; echo "SKIP all: oracle and api passed, unit test skipped"; exit 0
 fi
 $M build -I src examples/service.mojo -o .work/service 2>.work/build.err || { echo "FAIL build: examples/service.mojo"; cat .work/build.err; exit 1; }
 unit() {  # unit NAME PINGS WAIT_S: run a Type=notify unit with a 1 s watchdog, print its result after WAIT_S
@@ -44,6 +47,5 @@ echo "systemd: pinging unit alive after 3 s ($alive)"
 dead=$(unit mojo-systemd-silent-$$ 2 4)
 [[ $dead == *watchdog* ]] || { echo "FAIL systemd: silent unit not killed by the watchdog: $dead"; exit 1; }
 echo "systemd: silent unit killed by the watchdog ($dead)"
-$M run -I src tests/api.mojo || { echo "FAIL api: tests/api.mojo"; exit 1; }
 $M run -I src examples/quickstart.mojo > /dev/null || { echo "FAIL example: examples/quickstart.mojo"; exit 1; }
 echo "PASS all"
