@@ -1,0 +1,4 @@
+name = "mojo-systemd"
+version = "0.1.4"
+description = "sd_notify for Mojo: READY, STATUS, WATCHDOG, STOPPING to systemd"
+tags = ["mojo", "linux", "systemd"]
