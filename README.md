@@ -1,5 +1,7 @@
 # mojo-systemd
 
+> **Moved:** this library now lives in [amarbaro/mojo-libs](https://github.com/amarbaro/mojo-libs/tree/main/libs/posix) as `posix.systemd`.
+
 <!-- badges -->
 [![ci](https://github.com/amarbaro/mojo-systemd/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/amarbaro/mojo-systemd/actions/workflows/ci.yml) [![latest release](https://img.shields.io/github/v/release/amarbaro/mojo-systemd)](https://github.com/amarbaro/mojo-systemd/releases/latest) [![license](https://img.shields.io/github/license/amarbaro/mojo-systemd)](https://github.com/amarbaro/mojo-systemd/blob/main/LICENSE)
 <!-- /badges -->
